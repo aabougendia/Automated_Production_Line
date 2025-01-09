@@ -25,16 +25,10 @@
 #include "SYSTEM/System_interface.h"
 #include "UI/UI.h"
 
-u16 display_time(){
-	HLCD_Init();
-	HLCD_u8SetCursor(HLCD_LINE_2, 0);
-	HLCD_voidWriteNumber(System_u16TimeSorting);
-}
 
 int main(){
 	MDIO_Init();
 	MTMR0_Init();
-//	MUART_Init();
 	HTCS3200_Init();
 	HSORT_Init();
 	HLCD_Init();
@@ -57,16 +51,13 @@ int main(){
 
 
 	u16 local_u16StartTime;
-	u16 Local_u16EndTime;
 
 	u8 local_u8PauseInput = HKPD_NO_KEY_PRESSED;
 
 	while(1){
-
-
 		switch(System_eStateFlag){
 			case SYSTEM_RUNNING:
-
+				
 				HLCD_Init();
 				display_current_status(System_eStateFlag);
 				display_count(System_u8NumOfObjects);
@@ -146,9 +137,7 @@ int main(){
 						LogNumOfObjects();
 					}
 				}
-				else if (Local_eOutputColor == COLOR_NOT_DEFINED){
 
-				}
 			break;
 
 			case SYSTEM_PAUSED:
@@ -165,31 +154,6 @@ int main(){
 				LogTimeSpentSorting();
 				System_u16TimeSorting= 0;
 
-
-				local_u8PauseInput = HKPD_NO_KEY_PRESSED;
-				while(local_u8PauseInput == HKPD_NO_KEY_PRESSED){
-					HKPD_u8GetPressedKey(&local_u8PauseInput);
-				}
-				if(local_u8PauseInput = '4'){
-					System_eStateFlag = SYSTEM_RUNNING;
-				}
-
-			break;
-
-			case SYSTEM_UNDEFINED_COLOR:
-				HSORT_DCOff();
-				SystemErrorLedOn();
-				SystemRunningLedOff();
-				SystemPausedLedOff();
-
-				HLCD_Init();
-				display_current_status(System_eStateFlag);
-
-				LogTimeSpentSorting();
-				System_u16TimeSorting= 0;
-
-				System_u8NumOfErrors++;
-				LogNumOfErrors();
 
 				local_u8PauseInput = HKPD_NO_KEY_PRESSED;
 				while(local_u8PauseInput == HKPD_NO_KEY_PRESSED){
