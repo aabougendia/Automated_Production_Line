@@ -1,0 +1,9 @@
+#ifndef HTCS3200_PRIVATE_H_
+#define HTCS3200_PRIVATE_H_
+
+#define PRIVATE_SCALE_0			0
+#define PRIVATE_SCALE_2			1
+#define PRIVATE_SCALE_20		2
+#define PRIVATE_SCALE_100		3
+
+#endif /* HTCS3200_PRIVATE_H_ */
