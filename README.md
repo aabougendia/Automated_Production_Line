@@ -1,5 +1,5 @@
 
-# Color-Based Sorting Production Line Project
+# Autonomous Color-Based Sorting Production Line Project
 
 ## Overview
 
